@@ -1,0 +1,5 @@
+实战1：在内核模块中增加浮点运算，编译选项采用-mhard-float和-msoft-float分别进行处理，查看反汇编结果，解释原因（1分）
+实战2：学习arch/x86/kernel/traps.c中的异常入口，分解do_invalid_op宏
+      根据自己VM的ISA，找到一条没有使用的编码，引发SIGILL（1分）
+      然后增加该编码的模拟实现，打印一句HelloWorld（1分）
+实战3：限定某个用户的程序运行在一个cpu上（要求使用setaffinity）（1分）
