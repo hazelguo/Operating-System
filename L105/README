@@ -1,0 +1,5 @@
+实战1：用print_hex_dump打印boot_command_line和saved_command_line的地址空间内容（1分）
+（我的代码不对，应该把内核代码中boot_command_line的init去掉，saved_command_line指向一个指针，那个指针指向的内容是boot_command_line的副本）
+实战2：开启Magic SysRQ，测试各种按键组合（1分）
+实战3：学习内核dump_stack使用，使用dump_stack打印上堂课实战1的call stack（1分）
+实战4：Following "Debugging the kernel using Ftrace"（1分）
