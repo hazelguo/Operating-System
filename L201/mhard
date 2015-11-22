@@ -1,0 +1,64 @@
+
+hello-2.o:     file format elf64-x86-64
+
+
+Disassembly of section .init.text:
+
+0000000000000000 <init_module>:
+#include <linux/module.h>	/* Needed by all modules */
+#include <linux/kernel.h>	/* Needed for KERN_INFO */
+#include <linux/init.h>		/* Needed for the macros */
+
+static int __init hello_2_init(void)
+{
+   0:	55                   	push   %rbp
+	float f1;
+	printk(KERN_INFO "L201 starts: float.\n");
+   1:	48 c7 c7 00 00 00 00 	mov    $0x0,%rdi
+#include <linux/module.h>	/* Needed by all modules */
+#include <linux/kernel.h>	/* Needed for KERN_INFO */
+#include <linux/init.h>		/* Needed for the macros */
+
+static int __init hello_2_init(void)
+{
+   8:	48 89 e5             	mov    %rsp,%rbp
+   b:	50                   	push   %rax
+	float f1;
+	printk(KERN_INFO "L201 starts: float.\n");
+   c:	31 c0                	xor    %eax,%eax
+   e:	e8 00 00 00 00       	callq  13 <init_module+0x13>
+	f1 = 1.2;
+	printk(KERN_INFO "L201: float value is %lf.\n", f1);
+  13:	d9 05 00 00 00 00    	flds   0x0(%rip)        # 19 <init_module+0x19>
+  19:	48 c7 c7 00 00 00 00 	mov    $0x0,%rdi
+  20:	31 c0                	xor    %eax,%eax
+  22:	dd 1c 24             	fstpl  (%rsp)
+  25:	e8 00 00 00 00       	callq  2a <init_module+0x2a>
+	return 0;
+}
+  2a:	31 c0                	xor    %eax,%eax
+  2c:	c9                   	leaveq 
+  2d:	c3                   	retq   
+
+Disassembly of section .exit.text:
+
+0000000000000000 <cleanup_module>:
+
+static void __exit hello_2_exit(void)
+{
+   0:	55                   	push   %rbp
+	printk(KERN_INFO "L201 ends.\n");
+   1:	48 c7 c7 00 00 00 00 	mov    $0x0,%rdi
+   8:	31 c0                	xor    %eax,%eax
+	printk(KERN_INFO "L201: float value is %lf.\n", f1);
+	return 0;
+}
+
+static void __exit hello_2_exit(void)
+{
+   a:	48 89 e5             	mov    %rsp,%rbp
+	printk(KERN_INFO "L201 ends.\n");
+   d:	e8 00 00 00 00       	callq  12 <cleanup_module+0x12>
+}
+  12:	5d                   	pop    %rbp
+  13:	c3                   	retq   

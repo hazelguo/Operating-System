@@ -1,0 +1,4 @@
+0x408be03f	buffer	/home/gzh/src/quiz/quiz1/method2/producer	EXPORT_SYMBOL
+0x50af7971	lock	/home/gzh/src/quiz/quiz1/method2/producer	EXPORT_SYMBOL
+0xf6cb4273	tail	/home/gzh/src/quiz/quiz1/method2/producer	EXPORT_SYMBOL
+0x1a737417	head	/home/gzh/src/quiz/quiz1/method2/producer	EXPORT_SYMBOL
