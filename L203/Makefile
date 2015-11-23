@@ -1,4 +1,4 @@
-obj-m += hide_process.o
+obj-m += hide_thread.o
 
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
