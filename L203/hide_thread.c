@@ -17,14 +17,43 @@
 #include <linux/types.h>
 #include <linux/unistd.h>
 
-MODULE_LICENSE("Zihan Guo");
+MODULE_LICENSE("GPL");
+
+//	method 1:
+//	Adds a function to use kthread_create_list into kernel code.
+//	This method can't get into loop. -> Doesn't work.
+//	do {
+//		all_kthread_name();
+//		msleep_interruptible(1000*60);
+//	} while (1);
+
+//	method 2:
+//	Uses the same way as following part. Just executes this process earlier
+//	and delete what I don't want to see.
+//	for_each_process(tsk) {
+//		if (tsk->comm == cur->task->comm) {
+//			(tsk->tasks.prev)->next = tsk->tasks.next;
+//			(tsk->tasks.next)->prev = tsk->tasks.prev;
+//		}
+//	}
 
 static int kthread_func(void *data) {
 	printk(KERN_INFO "I'm in kthread_func.\n");
-	do {
-		all_kthread_name();
+	
+	struct thread_info *cur = current_thread_info();
+	struct task_struct *tsk;
+	
+//	method 3:
+//	Uses current_thread_info. I found this when searching for current.
+	printk(KERN_INFO "Get current thread name: %s\n", cur->task->comm);
+	(cur->task->tasks.prev)->next = cur->task->tasks.next;
+	(cur->task->tasks.next)->prev = cur->task->tasks.prev;
+
+	do {	
+		for_each_process(tsk) 
+			printk(KERN_INFO "kthread_func prints all process name: %s\n", tsk->comm);
 		msleep_interruptible(1000*60);
-	} while (1);
+	} while (1); 
 	return 0;
 }
 
