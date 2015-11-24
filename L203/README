@@ -1,0 +1,5 @@
+rootlit实验：
+1. 能在top命令下隐藏
+2. 能在ps命令下隐藏
+3. 隐藏模块（lsmod&sysfs）
+4. 在内核模块中创建一个kthread，然后隐藏自己（在进程队列中找不到该thread）。功能：每隔1分钟打印所有kthread的名称。
