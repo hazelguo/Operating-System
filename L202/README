@@ -1,0 +1,3 @@
+实战1：dump所有icache的内容和dcache的内容（2分）
+实战2：Detecting kernel memory leaks: http://lwn.net/Articles/187979/（1分）
+实战3：采用pagewalk dump一个用户进程的全部页表信息（1分）
