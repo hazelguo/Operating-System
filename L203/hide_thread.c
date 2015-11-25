@@ -22,6 +22,9 @@ MODULE_LICENSE("GPL");
 //	method 1:
 //	Adds a function to use kthread_create_list into kernel code.
 //	This method can't get into loop. -> Doesn't work.
+//	kthread_create_list will be created in kthread_create_on_node and 
+//	deleted in kthreadd, which means a running kthread will not be
+//	contained in kthread_create_list because it is created.
 //	do {
 //		all_kthread_name();
 //		msleep_interruptible(1000*60);
@@ -50,10 +53,12 @@ static int kthread_func(void *data) {
 	(cur->task->tasks.next)->prev = cur->task->tasks.prev;
 
 	do {	
-		for_each_process(tsk) 
-			printk(KERN_INFO "kthread_func prints all process name: %s\n", tsk->comm);
+		for_each_process(tsk) {
+			if (tsk->parent->pid == 2)
+				printk(KERN_INFO "kthread_func prints all process name: %s\n", tsk->comm);
+		}
 		msleep_interruptible(1000*60);
-	} while (1); 
+	} while (kthread_should_stop()); 
 	return 0;
 }
 
