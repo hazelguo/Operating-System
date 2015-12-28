@@ -1,0 +1,2 @@
+解析os，得出该程序在做什么即可。
+（非常简单的小程序，只涉及riscv基本集，参考相关文档：http://riscv.org/download.html）
